@@ -1,0 +1,41 @@
+.fourItemCard {
+    padding: 10px;
+    background-color: white;
+    aspect-ratio: 1;
+    margin: 0px 10px;
+    flex: 1;
+}
+
+.fourItemCard h1 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+.fourItemCard .twocrosstwogrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    justify-items: center;
+}
+
+
+.fourItemCard .twocrosstwogrid .item {
+    text-align: center;
+    padding: 5px;
+    width: 100%;
+    max-width: 100px;
+}
+
+.fourItemCard .twocrosstwogrid .item img {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.fourItemCard .twocrosstwogrid .item p {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}

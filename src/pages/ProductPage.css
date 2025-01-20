@@ -1,0 +1,269 @@
+.fullpage {
+    background-color: rgb(241, 241, 241);
+    min-height: 100vh;
+}
+
+.productCategories {
+    background-color: white;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    gap: 20px;
+    width: 100%;
+    padding: 15px 10px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.productCategories p {
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+
+.productRow{
+    display: flex;
+    gap: 40px;
+    padding: 50px;
+    margin: auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.productImageList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 50px;
+}
+
+.productImageList img {
+    width: 100%;
+    cursor: pointer;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+}
+
+.productImageList img:hover {
+    border: 2px solid #ff9900;
+}
+
+.productImage img {
+    width: 400px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #dddddd;
+}
+
+.productInfo {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.productInfo h1 {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    font-weight: 500;
+    color: #333;
+}
+
+.productInfo .reviews {
+    color: #007185;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.productInfo .price {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.productInfo .discount {
+    color: red;
+    font-size: 18px;
+    font-weight: 300;
+
+}
+
+.productInfo .finalAmount {
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: black;
+}
+
+.productInfo .mrp {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.productInfo .mrp span {
+    text-decoration: line-through;
+}
+
+.productRow hr {
+    height: 1px;
+    background-color: #eeeeee;
+    margin: 10px 0px;
+}
+
+.productInfo .offerstitle {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    color: #ff9900;
+    gap: 10px;
+}
+
+.productInfo .offerstitle span {
+    color: #333;
+}
+
+.productInfo .offers {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.productInfo .offer {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #eeeeee;
+}
+
+.productInfo .offer h3 {
+    font-size: 14px;
+}
+
+
+.productInfo .offer p {
+    font-size: 14px;
+}
+
+
+.productInfo .offer span {
+    font-size: 12px;
+    color: #007185;
+    cursor: pointer;
+}
+
+.productInfo .extras {
+    display: flex;
+    gap: 20px;
+}
+
+.productInfo .extraItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: #e68a00;
+    font-size: 30px;
+}
+
+.productInfo .extraItem span {
+    font-size: 12px;
+    color: #007185;
+}
+
+
+.productInfo table {
+    border-collapse: collapse;
+}
+
+.productInfo table th,
+.productInfo table td {
+    text-align: left;
+    padding: 3px;
+    font-size: 14px;
+}
+
+.productInfo table th {
+    font-size: 500;
+}
+
+
+.productInfo .about h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 10px 0px;
+
+}
+
+.productInfo .about ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.productInfo .about ul li {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: black;
+}
+
+.productPurchaseInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #eeeeee;
+    max-width: 300px;
+    overflow: hidden;
+}
+
+.productPurchaseInfo .exchange{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+}
+
+.exchange:nth-child(1){
+    background-color: #f2f2f2;
+}
+
+.exchange p{
+    font-size: 14px;
+}
+
+.exchange .span1, .exchange .span2{
+    font-weight: bold;
+    color: #b12704;
+}
+
+.exchange .span1{
+    font-weight: 400;
+}
+
+.exchange  .span3{
+    text-decoration: line-through;
+    font-size: 12px;
+    color: #888;
+    margin-left: 5px;
+}
+
+.productRow button{
+    width: min-content;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: black;
+    background-color: #fed716;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    white-space: nowrap;
+    align-self: center;
+}
+
+.productRow button:hover{
+    background-color: #e68a00;
+}

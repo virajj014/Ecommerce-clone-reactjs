@@ -1,0 +1,144 @@
+.fullpage{
+    background-color: #f3f3f3;
+    min-height: 100vh;
+}
+
+.cart{
+    display: flex;
+    margin: 20px;
+    gap: 20px;
+    flex: 1;
+}
+
+.cartData{
+    flex: 3;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.cartTotal{
+    flex: 1;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+}
+
+.cartData h1{
+    font-weight: 400;
+    margin-bottom: 5px;
+    font-size: 30px;
+}
+.cartTotal h1{
+    font-weight: 400;
+    margin-bottom: 5px;
+    font-size: 25px;
+}
+
+
+.cartTotal h1 span{
+    font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+
+.cartData .row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cartData .link{
+    color: #007185;
+}
+
+.cartData .t2{
+    font-weight: bold;
+}
+
+.cartData .hr {
+    height: 1px;
+    background-color: #eeeeee;
+    margin: 10px 0px;
+}
+
+
+.cartItem{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    gap: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+
+.cartItem:last-child{
+    border-bottom: none;
+}
+
+
+.cartItem img{
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.cartItem .details h2{
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.cartItem .stock{
+    color: #007600;
+    margin-bottom: 5px;
+}
+
+.cartItem .normal{
+    display: block;
+    font-size: 0.9em;
+    margin-bottom: 3px;
+}
+
+
+.cartItem .incrementdecrement{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    border: 2px solid #fed716;
+    border-radius: 20px;
+    padding: 5px 10px;
+    width: min-content;
+}
+
+.cartItem .incrementdecrement span{
+    padding: 0 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cartItem .price{
+    font-weight: bold;
+}
+
+.cartItem .details{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+}
+
+
+.cartTotal button{
+    width: 100%;
+    padding: 10px;
+    background-color: #fed716;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}

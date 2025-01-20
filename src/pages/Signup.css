@@ -1,0 +1,110 @@
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    min-height: 100vh;
+    background-color: white;
+}
+
+
+.signup-container .signup-box {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 400px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.signup-container .amazon-logo {
+    height: 30px;
+    margin: 0 auto 20px;
+}
+
+
+.signup-container h2 {
+    font-weight: 400;
+    margin-bottom: 10px;
+
+}
+
+.signup-container .input-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.signup-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.signup-container input {
+    flex: 1;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.signup-container .verify-button {
+    background-color: #fed716;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.signup-container .business-account {
+    margin: 20px 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.signup-container .login-link {
+    margin: 10px 0px;
+    display: flex;
+    gap: 10px;
+}
+
+.signup-container .mobile-input {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.signup-container .mobile-input span {
+    padding: 8px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.signup-container .mobile-input input {
+    border: none;
+    outline: none;
+    padding: 8px;
+}
+
+.signup-container .terms {
+    margin-top: 20px;
+    font-size: small;
+}
+
+.signup-container p {
+    font-weight: 400;
+}
+
+.signup-container a {
+    font-size: 14px;
+    color: #007185;
+    cursor: pointer;
+}

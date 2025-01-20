@@ -1,0 +1,28 @@
+.navbar{
+    background-color: rgb(15, 17, 17);
+    color: white;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0px 10px;
+    flex-wrap: wrap;
+}
+
+.navbar img{
+    height: 50px;
+}
+
+.navbar .addressContainer{
+    display: flex;
+    gap: 5px;
+    align-items: flex-end;
+}
+
+p{
+    font-size: 14px;
+}
+
+h3{
+    font-size: 16px;
+}
