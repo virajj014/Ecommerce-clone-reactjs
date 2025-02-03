@@ -3,7 +3,12 @@ import Navbar from '../components/Navbar'
 import NavbarList from '../components/NavbarList'
 import './SearchProducts.css'
 import ProductCard from '../components/ProductCard'
+import { useLocation } from 'react-router-dom'
 const SearchProducts = () => {
+
+  const location = useLocation();
+
+  const searchResults = location.state?.results || [];
   return (
     <div className='fullpage'>
       <Navbar />
@@ -85,11 +90,17 @@ const SearchProducts = () => {
           </div>
         </div>
         <div className='right'>
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {
+            searchResults.length>0 ? (
+              searchResults.map((product)=>(<ProductCard product={product} key={product.id}/>)
+                
+              )
+            )
+            :
+            (
+              <p>No products found</p>
+            )
+          }
 
         </div>
 

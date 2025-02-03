@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './ProductPage.css'
 import product1 from '../assets/products2/p1.jpg'
 import Navbar from '../components/Navbar'
@@ -9,8 +9,54 @@ import { RiDiscountPercentLine } from 'react-icons/ri'
 import { FaArrowsRotate } from 'react-icons/fa6'
 import { CiDeliveryTruck } from 'react-icons/ci'
 import { GoShieldCheck } from 'react-icons/go'
+import { useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const ProductPage = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [activeImage, setActiveImage] = useState(null);
+
+  useEffect(() => {
+    fetch(`https://dummyjson.com/products/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        setProduct(data);
+        setActiveImage(data.thumbnail)
+        setLoading(false)
+      })
+      .catch(err => {
+        setError(err.message);
+        setLoading(false)
+
+      })
+  }, [id])
+
+
+  const addToCart = (productId, quantity = 1) => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    console.log(cart)
+    const existingProduct = cart.find(item => item.id === productId);
+
+    if (existingProduct) {
+      existingProduct.quantity += quantity;
+    }
+    else {
+      cart.push({ id: productId, quantity });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    toast("Cart updated")
+  }
+
+
+
+  if (loading) return <div className='loading'>Loading product details...</div>
+  if (error) return <div className='error'>Error: {error}</div>
+
+
   return (
     <div className='fullpage'>
       <Navbar />
@@ -30,25 +76,30 @@ const ProductPage = () => {
 
       <div className='productRow'>
         <div className='productImageList'>
-          <img src={product1} />
-          <img src={product1} />
-          <img src={product1} />
-          <img src={product1} />
+          {
+            product.images.slice(0, 4).map((imgpath, index) => (
+              <img src={imgpath} key={index} alt={`Product ${index}`}
+                onClick={() => setActiveImage(imgpath)}
+              />
+            )
+            )
+          }
+
         </div>
         <div className='productImage'>
-          <img src={product1} />
+          <img src={activeImage} alt={product.title} />
         </div>
         <div className='productInfo'>
-          <h1>Redmi Note 14 5G (Titan Black, 8GB RAM 128GB Storage) | Global Debut MTK Dimensity 7025 Ultra | 2100 nits Segment Brightest 120Hz AMOLED | 50MP Sony LYT 600 OIS+EIS Triple Camera</h1>
+          <h1>{product.title}</h1>
           <div className='rating'>
             <span className='stars'><IoStar /><IoStar /><IoStar /><IoStar /><IoStarHalf /></span>
-            <span className='reviews'>(104)</span>
+            <span className='reviews'>({product.rating})</span>
           </div>
           <div className='price'>
-            <span className='discount'>-13%</span>
-            <span className='finalAmount'>Rs. 19,999</span>
+            <span className='discount'>-{product.discountPercentage}%</span>
+            <span className='finalAmount'>Rs. {product.price}</span>
           </div>
-          <span className='mrp'>M.R.P.: <span>22,999</span></span>
+          <span className='mrp'>M.R.P.: <span>{(product.price / (1 - product.discountPercentage / 100)).toFixed(2)}</span></span>
           <div className='hr'></div>
           <div className='offerstitle'>
             <RiDiscountPercentLine />
@@ -74,60 +125,51 @@ const ProductPage = () => {
           <div className='hr'></div>
           <div className='extras'>
             <div className='extraItem'>
-              <FaArrowsRotate/>
+              <FaArrowsRotate />
               <span>7 days Replacement</span>
             </div>
             <div className='extraItem'>
-              <CiDeliveryTruck/>
+              <CiDeliveryTruck />
               <span>Free Delivery</span>
             </div>
             <div className='extraItem'>
-              <GoShieldCheck/>
-              <span>1 year Warranty</span>
+              <GoShieldCheck />
+              <span>{product.warrantyInformation || "No warranty"}</span>
             </div>
           </div>
           <table>
             <tbody>
               <tr>
                 <th>Brand</th>
-                <td>Redmi</td>
+                <td>{product.brand}</td>
               </tr>
               <tr>
-                <th>Operating System</th>
-                <td>Android 14, Xiaomi HyperOS</td>
+                <th>Category</th>
+                <td>{product.category}</td>
               </tr>
-              <tr>
-                <th>Screen Size</th>
-                <td>6.67 Inches</td>
-              </tr>
+
             </tbody>
           </table>
           <div className='about'>
             <h3>About this item</h3>
             <ul>
-              <li>
-                Display: 6.67" FHD+ AMOLED (1080x2400) Ultra-narrow bezels Display with 120Hz Refresh rate; 2100nits peak brightness; Corning Gorilla Glass 5 Display Protection
+              <li>{product.description}
               </li>
-              <li>
-                Processor:Mediatek Dimensity 7025-Ultra 6nm Octa-core 5G processor for high performance ; Up to 2.5GHz ; Upto 16GB RAM including 8GB Virtual RAM
-              </li>
-              <li>
-                Camera: 50MP Sony LYT-600 AI Triple Camera with 8MP Ultra Wide sensor and 2MP Macro camera| 20MP Front camera
-              </li>
+
             </ul>
           </div>
         </div>
         <div className='productPurchaseInfo'>
           <div className='exchange'>
-            <p>With Exchange<br/><span className='span1'>Up to Rs. 18,950 off</span></p>
-            <input type='radio'/>
+            <p>With Exchange<br /><span className='span1'>Up to Rs. {(product.price - product.price / 10).toFixed(2)} off</span></p>
+            <input type='radio' />
           </div>
           <div className='exchange'>
-            <p>Without Exchange<br/><span className='span2'>Rs. 19,999</span><span className='span3'>Rs. 22,999</span></p>
-            <input type='radio'/>
+            <p>Without Exchange<br /><span className='span2'>Rs. {product.price}</span><span className='span3'>Rs. {(product.price / (1 - product.discountPercentage / 100)).toFixed(2)}</span></p>
+            <input type='radio' />
           </div>
-          <button>Add to Cart</button>
-          <button>Buy Now</button>
+          <button onClick={() => addToCart(product.id)}>Add to Cart</button>
+          <button onClick={() => addToCart(product.id)}>Buy Now</button>
         </div>
       </div>
     </div>

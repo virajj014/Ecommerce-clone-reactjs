@@ -6,6 +6,7 @@ import { IoIosSearch } from "react-icons/io";
 const SearchBar = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Categories")
   const [searchQuery, setSearchQuery] = useState("")
+
   const navigate = useNavigate()
 
 
@@ -29,7 +30,20 @@ const SearchBar = () => {
     console.log("Search Quesry: ", searchQuery)
     // call your backend api
 
-    navigate('/searchproducts')
+
+    if (!searchQuery.trim()) return;
+    try {
+      fetch(`https://dummyjson.com/products/search?q=${searchQuery}`)
+        .then(res => res.json())
+        .then((data) => {
+          navigate(`/searchproducts?query=${searchQuery}`, { state: { results: data.products } })
+        });
+    }
+    catch (err) {
+      console.error("Error fetching search results:", err);
+
+    }
+    // navigate('/searchproducts')
   }
   return (
     <div className='search-bar'>
