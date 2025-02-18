@@ -25,7 +25,7 @@ const Home = () => {
     <div className='fullpage'>
       <Navbar />
       <NavbarList />
-      <div style={{
+      {/* <div style={{
         width: '95%',
         margin: 'auto'
       }}>
@@ -54,7 +54,7 @@ const Home = () => {
         <FourItemCard products={productData.slice(21,25)}/>
         <FourItemCard products={productData.slice(25,29)}/>
       </div>
-      )}
+      )} */}
     </div>
   )
 }

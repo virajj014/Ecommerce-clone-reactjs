@@ -4,6 +4,7 @@
     background-color: white;
     border-radius: 10px;
     flex: 1;
+    width: 100%;
     margin: 20px auto;
     gap: 5px;
     box-sizing: border-box;
@@ -17,6 +18,7 @@
     border-radius: 10px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
+    width: 70px;
 }
 
 .search-bar-container {

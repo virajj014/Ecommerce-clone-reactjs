@@ -1,28 +1,81 @@
-.navbar{
+.navbar {
     background-color: rgb(15, 17, 17);
     color: white;
     justify-content: space-between;
     display: flex;
     align-items: center;
-    gap: 20px;
-    padding: 10px 10px;
+    gap: 15px;
+    padding: 10px 20px;
     flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.navbar img{
-    height: 50px;
+.navbar img {
+    height: 40px;
+    cursor: pointer;
 }
 
-.navbar .addressContainer{
+.navbar .addressContainer {
     display: flex;
     gap: 5px;
     align-items: flex-end;
 }
 
-p{
+p {
     font-size: 14px;
+    margin: 0;
 }
 
-h3{
+h3 {
     font-size: 16px;
+    margin: 0;
+}
+
+
+.navbar .right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .navbar {
+        flex-wrap: wrap;
+        padding: 10px;
+        gap: 10px;
+        width: 100%;
+        flex: 1;
+    }
+
+    .navbar img {
+        height: 35px;
+    }
+
+    .navbar .addressContainer {
+        display: none;
+        /* Hide location on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        flex: 1;
+    }
+
+    .navbar img {
+        height: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 }

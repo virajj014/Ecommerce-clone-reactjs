@@ -21,13 +21,15 @@ const Navbar = () => {
                     <h3>Jabalpur 482002</h3>
                 </div>
             </div>
-            <SearchBar/>
-            <CountrySelector/>
-            <div onClick={()=> navigate('/login')}>
-                <AccountAndLists/>
-            </div>
-            <div onClick={()=> navigate('/cart')}>
-                <CartIndicator/>
+            <SearchBar />
+            <div className='right'>
+                <CountrySelector />
+                <div onClick={() => navigate('/login')}>
+                    <AccountAndLists />
+                </div>
+                <div onClick={() => navigate('/cart')}>
+                    <CartIndicator />
+                </div>
             </div>
         </div>
     )

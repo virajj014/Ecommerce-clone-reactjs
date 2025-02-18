@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { IoIosSearch } from 'react-icons/io';
 
 function SearchBar() {
-  const [selectedCategory, setSelectedCategory] = useState("All Categories");
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ function SearchBar() {
   ];
 
   const categories = [
-    "All Categories",
+    "All",
     "Alexa Skills",
     "Amazon Devices",
     "Amazon Fashion",
