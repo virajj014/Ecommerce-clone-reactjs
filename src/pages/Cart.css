@@ -76,7 +76,12 @@
     gap: 10px;
     border-bottom: 1px solid #eee;
 }
-
+.cartItemrow{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
 
 .cartItem:last-child{
     border-bottom: none;
@@ -141,4 +146,24 @@
     border: none;
     border-radius: 25px;
     cursor: pointer;
+}
+
+
+@media (max-width:1000px) {
+    .cart{
+        flex-direction: column-reverse;
+    }
+
+    .cartTotal{
+      
+        position: relative;
+  
+    }
+}
+
+
+@media (max-width:500px) {
+    .cartItemrow{
+        flex-direction: column;
+    }
 }

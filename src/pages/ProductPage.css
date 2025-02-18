@@ -267,3 +267,92 @@
 .productRow button:hover{
     background-color: #e68a00;
 }
+
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .productRow {
+        flex-direction: column;
+        gap: 50px;
+        padding: 30px;
+    }
+    .productImage{
+        display: flex;
+        justify-content: center;
+    }
+    .productImage img {
+        width: 100%;
+        max-width: 600px;
+        margin: auto;
+    }
+    .productImageList {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        flex: 1;
+        max-width: 100%;
+
+    }
+    .productImageList img {
+        width: 50px;
+    }
+    .productInfo, .productPurchaseInfo {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .productCategories {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: start;
+    }
+}
+
+@media (max-width: 768px) {
+    .productRow {
+        padding: 20px;
+    }
+
+    
+
+    .productImageList img {
+        width: 80px;
+        height: auto;
+    }
+
+    .productInfo h1 {
+        font-size: 1.2rem;
+    }
+
+    .productInfo .finalAmount {
+        font-size: 1.5rem;
+    }
+
+    .productInfo .offers {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .productCategories {
+       display: none;
+    }
+
+    .productRow button {
+        width: 100%;
+    }
+
+    .productPurchaseInfo .exchange {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .exchange input[type='radio'] {
+        align-self: flex-end;
+    }
+
+    .productImage img {
+        max-width: 100%;
+    }
+}

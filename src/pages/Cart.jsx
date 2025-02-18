@@ -91,23 +91,26 @@ const Cart = () => {
                 :
                 cartItems.map((item) => (
                   <div className='cartItem' key={item.id}>
-                    <input type='checkbox' />
-                    <img src={item.thumbnail} alt={item.title} />
-                    <div className='details'>
-                      <h2>{item.title}</h2>
-                      <span className='stock'>{item.stock > 0 ? 'In Stock' : 'Out of Stock'}</span>
-                      <span className='normal'>Sold by <span className='link'>xyz detail</span></span>
-                      <span className='normal'>Amazon Delivered</span>
-                      <span className='incrementdecrement'>
-                        {
-                          item.quantity > 1 ?
-                            <span onClick={() => handleQuantityChange(item.id, 'decrement')}>-</span>
-                            :
-                            <span onClick={() => handleQuantityChange(item.id, 'decrement')}><RiDeleteBin6Line /></span>
-                        }
-                        <span>{item.quantity}</span>
-                        <span onClick={() => handleQuantityChange(item.id, 'increment')}>+</span>
-                      </span>
+                     <input type='checkbox' />
+                    <div className='cartItemrow'>
+                     
+                      <img src={item.thumbnail} alt={item.title} />
+                      <div className='details'>
+                        <h2>{item.title}</h2>
+                        <span className='stock'>{item.stock > 0 ? 'In Stock' : 'Out of Stock'}</span>
+                        <span className='normal'>Sold by <span className='link'>xyz detail</span></span>
+                        <span className='normal'>Amazon Delivered</span>
+                        <span className='incrementdecrement'>
+                          {
+                            item.quantity > 1 ?
+                              <span onClick={() => handleQuantityChange(item.id, 'decrement')}>-</span>
+                              :
+                              <span onClick={() => handleQuantityChange(item.id, 'decrement')}><RiDeleteBin6Line /></span>
+                          }
+                          <span>{item.quantity}</span>
+                          <span onClick={() => handleQuantityChange(item.id, 'increment')}>+</span>
+                        </span>
+                      </div>
                     </div>
                     <span className='price'>Rs. {(item.price * item.quantity).toFixed(2)}</span>
 

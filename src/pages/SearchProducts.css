@@ -68,3 +68,14 @@
     gap: 10px;
 
 }
+
+@media (max-width:500px) {
+    .productSort{
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center;
+    }
+}
+@media (max-width:1000px) {
+    .productList .left{display: none;}
+}

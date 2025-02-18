@@ -1,39 +1,50 @@
 .fourItemCard {
     padding: 10px;
     background-color: white;
-    aspect-ratio: 1;
-    margin: 0px 10px;
     flex: 1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* aspect-ratio: 1; */
 }
 
 .fourItemCard h1 {
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 10px;
+    height: 10%;
 }
 
-
-.fourItemCard .twocrosstwogrid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 5px;
-    justify-items: center;
+.fourItemCard .twocrosstwogrid{
+    
+    height: 90%;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
-
 
 .fourItemCard .twocrosstwogrid .item {
     text-align: center;
     padding: 5px;
-    width: 100%;
-    max-width: 100px;
+    width: 50%;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
-
 .fourItemCard .twocrosstwogrid .item img {
     width: 100%;
-    max-height: 50px;
+    max-height: 50%;
     object-fit: contain;
     margin-bottom: 10px;
 }
+/* 
+
+
+
 
 .fourItemCard .twocrosstwogrid .item p {
     font-size: 12px;
@@ -41,3 +52,19 @@
     color: #333;
     margin: 0;
 }
+
+@media (max-width: 768px) {
+    .fourItemCard {
+        aspect-ratio: unset; 
+    }
+
+    .fourItemCard .twocrosstwogrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .fourItemCard .twocrosstwogrid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+} */

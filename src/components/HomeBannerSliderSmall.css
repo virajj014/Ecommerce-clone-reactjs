@@ -20,14 +20,9 @@
 
 .swiper-button-prev,
 .swiper-button-next {
-    top: 30%; /* Adjust positioning */
+  
     color: black;
+  
 }
 
-@media (max-width: 768px) {
-    .swiper-button-prev,
-    .swiper-button-next {
-        top: 40%;
-        font-size: 12px; /* Reduce size */
-    }
-}
+
