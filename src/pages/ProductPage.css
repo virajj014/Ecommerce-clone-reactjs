@@ -8,7 +8,7 @@
     color: black;
     display: flex;
     justify-content: space-between;
-    overflow: hidden;
+    flex-wrap: wrap;
     gap: 20px;
     width: 100%;
     padding: 15px 10px;
@@ -22,7 +22,7 @@
 }
 
 
-.productRow{
+.productRow {
     display: flex;
     gap: 40px;
     padding: 50px;
@@ -208,7 +208,7 @@
     color: black;
 }
 
-.productPurchaseInfo{
+.productPurchaseInfo {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -219,7 +219,7 @@
     overflow: hidden;
 }
 
-.productPurchaseInfo .exchange{
+.productPurchaseInfo .exchange {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -227,31 +227,32 @@
     padding: 15px;
 }
 
-.exchange:nth-child(1){
+.exchange:nth-child(1) {
     background-color: #f2f2f2;
 }
 
-.exchange p{
+.exchange p {
     font-size: 14px;
 }
 
-.exchange .span1, .exchange .span2{
+.exchange .span1,
+.exchange .span2 {
     font-weight: bold;
     color: #b12704;
 }
 
-.exchange .span1{
+.exchange .span1 {
     font-weight: 400;
 }
 
-.exchange  .span3{
+.exchange .span3 {
     text-decoration: line-through;
     font-size: 12px;
     color: #888;
     margin-left: 5px;
 }
 
-.productRow button{
+.productRow button {
     width: min-content;
     padding: 10px 15px;
     font-size: 14px;
@@ -264,27 +265,29 @@
     align-self: center;
 }
 
-.productRow button:hover{
+.productRow button:hover {
     background-color: #e68a00;
 }
 
 
-/* Responsive Styles */
-@media (max-width: 1200px) {
+@media (max-width:1200px) {
     .productRow {
         flex-direction: column;
         gap: 50px;
         padding: 30px;
     }
-    .productImage{
+
+    .productImage {
         display: flex;
         justify-content: center;
     }
+
     .productImage img {
         width: 100%;
         max-width: 600px;
         margin: auto;
     }
+
     .productImageList {
         display: flex;
         flex-direction: row;
@@ -292,34 +295,36 @@
         width: 100%;
         flex: 1;
         max-width: 100%;
-
     }
+
     .productImageList img {
         width: 50px;
     }
-    .productInfo, .productPurchaseInfo {
+
+    .productInfo,
+    .productPurchaseInfo {
         width: 100%;
-        gap: 10px;
+        gap: 20px;
+        flex: 1;
+        /* background-color: #888; */
+        max-width: 100%
     }
 
-    .productCategories {
-        flex-wrap: wrap;
-        gap: 10px;
-        justify-content: start;
+    .productPurchaseInfo button {
+        width: 100%;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width:768px) {
     .productRow {
         padding: 20px;
     }
-
-    
 
     .productImageList img {
         width: 80px;
         height: auto;
     }
+
 
     .productInfo h1 {
         font-size: 1.2rem;
@@ -334,22 +339,15 @@
     }
 }
 
-@media (max-width: 480px) {
-    .productCategories {
-       display: none;
-    }
 
-    .productRow button {
-        width: 100%;
+@media (max-width:480px) {
+    .productCategories {
+        display: none;
     }
 
     .productPurchaseInfo .exchange {
         flex-direction: column;
         align-items: flex-start;
-    }
-
-    .exchange input[type='radio'] {
-        align-self: flex-end;
     }
 
     .productImage img {

@@ -91,9 +91,8 @@ const Cart = () => {
                 :
                 cartItems.map((item) => (
                   <div className='cartItem' key={item.id}>
-                     <input type='checkbox' />
+                    <input type='checkbox' />
                     <div className='cartItemrow'>
-                     
                       <img src={item.thumbnail} alt={item.title} />
                       <div className='details'>
                         <h2>{item.title}</h2>

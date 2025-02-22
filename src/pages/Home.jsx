@@ -42,25 +42,25 @@ const Home = () => {
           {
             productData?.length > 0 && (
               <div className='bannerCards'>
-                <FourItemCard products={productData.slice(0, 4)} />
-                <FourItemCard products={productData.slice(4, 8)} />
+                <FourItemCard products={productData.slice(0,4)}/>
+                <FourItemCard products={productData.slice(4,8)}/>
 
-                <SingleItemCard product={productData[8]} />
-                <FourItemCard products={productData.slice(9, 13)} />
+                <SingleItemCard product={productData[8]}/>
+                <FourItemCard products={productData.slice(9,13)}/>
               </div>
             )
           }
         </div>
-        {productData?.length > 0 && (
-          <div className='cards'>
-            <FourItemCard products={productData.slice(13, 17)} />
-            <FourItemCard products={productData.slice(17, 21)} />
-            <FourItemCard products={productData.slice(21, 25)} />
-            <FourItemCard products={productData.slice(25, 29)} />
-          </div>
-        )}
-      </div>
 
+      </div>
+      {productData?.length > 0 && (
+      <div className='cards'>
+        <FourItemCard  products={productData.slice(13,17)}/>
+        <FourItemCard products={productData.slice(17,21)}/>
+        <FourItemCard products={productData.slice(21,25)}/>
+        <FourItemCard products={productData.slice(25,29)}/>
+      </div>
+      )}
     </div>
   )
 }

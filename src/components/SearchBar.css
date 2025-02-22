@@ -7,11 +7,11 @@
     width: 100%;
     margin: 20px auto;
     gap: 5px;
-    box-sizing: border-box;
+
 }
 
 .category-dropdown {
-    height:40px;
+    height: 40px;
     padding: 5px;
     border: 1px solid #ccc;
     background-color: #f5f5f5;
@@ -23,21 +23,21 @@
 
 .search-bar-container {
     flex: 1;
+    display: flex;
     z-index: 1000;
-    display: flex; /* Ensure items inside the container are aligned correctly */
 }
 
 .search-button {
-    height:40px;
+    height: 40px;
     width: 50px;
     background-color: #febd69;
     border: none;
     cursor: pointer;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-    display: flex; /* Ensure it aligns properly with the height of the search bar */
-    justify-content: center; /* Center the icon inside the button */
-    align-items: center; /* Vertically center the content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .search-button:hover {

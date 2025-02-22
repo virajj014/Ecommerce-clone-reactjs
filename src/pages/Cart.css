@@ -68,7 +68,12 @@
     margin: 10px 0px;
 }
 
-
+.cartItemrow{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
 .cartItem{
     display: flex;
     align-items: center;
@@ -76,12 +81,7 @@
     gap: 10px;
     border-bottom: 1px solid #eee;
 }
-.cartItemrow{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 1;
-}
+
 
 .cartItem:last-child{
     border-bottom: none;
@@ -153,14 +153,10 @@
     .cart{
         flex-direction: column-reverse;
     }
-
     .cartTotal{
-      
         position: relative;
-  
     }
 }
-
 
 @media (max-width:500px) {
     .cartItemrow{

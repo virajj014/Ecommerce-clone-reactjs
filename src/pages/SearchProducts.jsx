@@ -13,7 +13,7 @@ const SearchProducts = () => {
     <div className='fullpage'>
       <Navbar />
       <NavbarList />
-      <div className='productCategories'>
+      <div className='productCategories1'>
         <p>Electronics</p>
         <p>Mobiles & Accessories</p><p>
           Laptops & Accessories</p><p>

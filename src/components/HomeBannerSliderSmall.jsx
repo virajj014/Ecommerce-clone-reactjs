@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-import './HomeBannerSliderSmall.css'
+import './HomeBannerSlider.css'
 import { Navigation } from 'swiper/modules';
 import slide1 from '../assets/homeBannerSlides/4.jpg'
 import slide2 from '../assets/homeBannerSlides/5.jpg'

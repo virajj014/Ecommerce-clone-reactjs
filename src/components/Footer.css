@@ -1,91 +1,94 @@
-/* Footer.css */
 .footer {
     background-color: #232f3e;
     color: white;
     text-align: center;
-  }
-  
-  .back-to-top {
+}
+
+.back-to-top {
     background-color: #37475a;
     padding: 10px;
-  }
-  
-  .back-to-top a {
+}
+
+.back-to-top a {
     color: white;
     text-decoration: none;
     font-weight: 400;
     font-size: 14px;
-  }
-  
-  .footer-content {
+}
+
+.footer-content {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     padding: 20px;
     gap: 50px;
-  }
-  
-  .footer-section {
+}
+
+.footer-section {
     min-width: 200px;
     margin: 10px;
     text-align: left;
-  }
-  
-  .footer-section h3 {
+}
+
+.footer-section h3 {
     font-size: 16px;
     margin-bottom: 10px;
-  }
-  
-  .footer-section ul {
+}
+
+.footer-section ul {
     list-style: none;
     padding: 0;
-  }
-  
-  .footer-section ul li {
-    margin: 5px 0;
-  }
-  
-  .footer-section ul li a {
+}
+
+.footer-section li {
+    margin: 5px 0px;
+}
+
+.footer-section li a {
     color: #ddd;
     text-decoration: none;
     font-size: 14px;
-  }
-  
-  .footer-section ul li a:hover {
+}
+
+.footer-section li a:hover {
     text-decoration: underline;
-  }
-  
-  .footer-bottom {
+}
+
+.footer-bottom {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 15px 50px;
-    gap:50px;
-    border-top: 1px solid rgba(255, 255, 255, 0.171);
-  }
-  .footer-bottom .logo{
+    gap: 50px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom .logo {
     height: 40px;
-  }
-  .footer-buttons{
+}
+
+.footer-buttons {
     display: flex;
-  }
-  
-  .footer-buttons button {
-    background: transparent;
+}
+
+.footer-buttons button {
+    background-color: transparent;
     display: flex;
     align-items: center;
     gap: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.171);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: white;
     padding: 8px 15px;
     margin: 5px;
     cursor: pointer;
     border-radius: 3px;
-  }
-  .footer-buttons button img{
+}
+
+.footer-buttons button img{
     width: 20px;
-  }
-  .footer-buttons button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-  
+}
+
+.footer-buttons button:hover{
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+}

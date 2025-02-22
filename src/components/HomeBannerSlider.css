@@ -5,7 +5,10 @@
 
 .swiper-slide {
     text-align: center;
+    font-size: 18px;
     background: #fff;
+
+    /* Center slide text vertically */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,20 +17,23 @@
 .swiper-slide img {
     display: block;
     width: 100%;
-    height: auto; /* Ensures aspect ratio is maintained */
+    height: auto;
     object-fit: cover;
 }
 
 .swiper-button-prev,
 .swiper-button-next {
-    top: 30%; /* Adjust positioning */
+    top: 30%;
+    transform: translate(-50%);
     color: black;
 }
 
-@media (max-width: 768px) {
+
+@media (max-width:768px) {
     .swiper-button-prev,
-    .swiper-button-next {
-        top: 40%;
-        font-size: 12px; /* Reduce size */
-    }
+.swiper-button-next {
+    top: 40%;
+   font-size: 14px;
+}
+
 }

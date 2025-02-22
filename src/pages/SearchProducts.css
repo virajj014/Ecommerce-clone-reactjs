@@ -3,7 +3,7 @@
     min-height: 100vh;
 }
 
-.productCategories{
+.productCategories1{
     background-color: white;
     color: black;
     display: flex;
@@ -15,7 +15,7 @@
     border-bottom: 1px solid #eeeeee;
 }
 
-.productCategories p{
+.productCategories1 p{
     font-size: 14px;
     cursor: pointer;
     white-space: nowrap;
@@ -68,14 +68,20 @@
     gap: 10px;
 
 }
+@media (max-width:1000px) {
+    .productList .left{
+        display: none;
+    }
+
+}
 
 @media (max-width:500px) {
     .productSort{
         flex-direction: column;
-        justify-content: center; 
+        justify-content: center;
         align-items: center;
     }
-}
-@media (max-width:1000px) {
-    .productList .left{display: none;}
+    .productCategories1{
+        display: none;
+    }
 }
