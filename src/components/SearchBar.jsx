@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './SearchBar.css'
 import { useNavigate } from 'react-router-dom'
 import { IoIosSearch } from "react-icons/io";
@@ -7,17 +7,22 @@ import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 const SearchBar = () => {
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [searchQuery, setSearchQuery] = useState("")
+  const [items, setItems] = useState([]);
 
   const navigate = useNavigate()
 
-
-  const items = [
-    { id: 0, name: 'apple' },
-    { id: 1, name: 'phone' },
-    { id: 2, name: 'bag' },
-    { id: 3, name: 'food' },
-
-  ]
+  useEffect(() => {
+    fetch('https://dummyjson.com/products?limit=5&select=title')
+      .then((res) => res.json())
+      .then((data) => {
+        const productItems = data.products.map((product, index) => ({
+          id: index,
+          name: product.title,
+        }));
+        setItems(productItems);
+      })
+      .catch((err) => console.error('Error fetching products:', err));
+  }, [])
 
 
   const categories = [
@@ -31,9 +36,29 @@ const SearchBar = () => {
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value)
   }
-  const handleSearchChange = (string, results) => {
-    setSearchQuery(string)
-  }
+  const debounce = (func, delay) => {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => func(...args), delay);
+    };
+  };
+
+  const handleSearchChange = debounce((string, results) => {
+    fetch('https://dummyjson.com/products?limit=5&select=title')
+      .then((res) => res.json())
+      .then((data) => {
+        const productItems = data.products.map((product, index) => ({
+          id: index,
+          name: product.title,
+        }));
+        setItems(productItems);
+      })
+      .catch((err) => console.error('Error fetching products:', err));
+
+    setSearchQuery(string);
+  }, 3000);
+
 
   const handleSearch = () => {
     console.log("Category: ", selectedCategory)
