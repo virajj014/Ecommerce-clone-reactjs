@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import './SearchBar.css'
 import { useNavigate } from 'react-router-dom'
 import { IoIosSearch } from "react-icons/io";
@@ -43,18 +43,21 @@ const SearchBar = () => {
     };
   };
 
-  const fetchProducts = (query) => {
-    fetch(`https://dummyjson.com/products?limit=5&select=title&q=${query}`)
-      .then((res) => res.json())
-      .then((data) => {
-        const productItems = data.products.map((product, index) => ({
-          id: index,
-          name: product.title,
-        }));
-        setItems(productItems);
-      })
-      .catch((err) => console.error('Error fetching products:', err));
-  }
+  const fetchProducts = useCallback((query) => {
+    if (!query.trim()) return; // If query is empty, return
+    setTimeout(() => {
+      fetch(`https://dummyjson.com/products?limit=5&select=title&q=${query}`)
+        .then((res) => res.json())
+        .then((data) => {
+          const productItems = data.products.map((product, index) => ({
+            id: index,
+            name: product.title,
+          }));
+          setItems(productItems);
+        })
+        .catch((err) => console.error('Error fetching products:', err));
+    }, 500); // 500ms debounce time
+  }, []);
 
   const handleSearchChange = (string, results) => {
     setSearchQuery(string);
