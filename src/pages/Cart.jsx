@@ -4,10 +4,12 @@ import Navbar from '../components/Navbar'
 import NavbarList from '../components/NavbarList'
 import product1 from '../assets/products2/p1.jpg'
 import { RiDeleteBin6Line } from 'react-icons/ri'
+import { useCart } from '../context/CartContext'
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { updateCartCount } = useCart();
 
   useEffect(() => {
     const fetchCartData = async () => {
@@ -38,6 +40,7 @@ const Cart = () => {
     localStorage.setItem('cart', JSON.stringify(cartData));
     setCartItems(cartData)
     // console.log(updatedCart);
+    updateCartCount();
   }
 
   const handleQuantityChange = (itemId, action) => {

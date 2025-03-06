@@ -11,8 +11,11 @@ import { CiDeliveryTruck } from 'react-icons/ci'
 import { GoShieldCheck } from 'react-icons/go'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { useCart } from '../context/CartContext'
 
 const ProductPage = () => {
+  const { updateCartCount } = useCart();
+
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -73,6 +76,9 @@ const ProductPage = () => {
 
     localStorage.setItem('cart', JSON.stringify(cart));
     toast("Cart updated")
+
+
+    updateCartCount();
   }
 
 
