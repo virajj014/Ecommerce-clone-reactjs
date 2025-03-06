@@ -1,0 +1,150 @@
+.checkout {
+  min-height: 100vh;
+  background-color: rgb(241, 241, 241);
+}
+
+.checkouttopbar {
+  background-color: #232f3e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.checkouttopbar img {
+  height: 50px;
+}
+
+.checkouttopbar h1 {
+  color: white;
+  font-weight: 400;
+}
+
+.checkouttopbar button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  display: flex;
+  gap: 10px;
+  color: white;
+  align-items: center;
+}
+
+.checkoutContainer {
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+
+}
+
+.checkout .left {
+  flex: 2;
+
+}
+
+
+
+.addressSection {
+  margin-bottom: 10px;
+  background-color: white;
+  padding: 20px;
+}
+
+.paymentMethod {
+  background-color: white;
+  padding: 20px;
+}
+
+.paymentForm form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.paymentForm form label {
+  margin-top: 10px;
+}
+
+.paymentForm input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.paymentMethod button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px 0;
+  background: linear-gradient(135deg, #f7ca00, #f0b800);
+  color: #111;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1px;
+}
+
+
+.cardDetails {
+  display: flex;
+  gap: 20px;
+}
+
+.cardDetails input {
+  width: 100%;
+}
+
+
+
+
+.checkout .right {
+  flex: 1;
+  background-color: white;
+}
+
+.orderSummary {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.orderSummary h2 {
+  margin-bottom: 15px;
+  text-align: center;
+  color: #333;
+}
+
+.orderSummary table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orderSummary table td,
+.orderSummary table th {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  font-size: 16px;
+}
+
+.orderSummary table tr:last-child th {
+  color: black;
+  font-size: 18px;
+}
+
+.orderSummary table tr:last-child {
+  font-weight: bold;
+}
+
+.orderSummary table tr:last-child th,
+.orderSummary table tr:last-child td {
+  border-bottom: none;
+}
+
+.checkout .error {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}

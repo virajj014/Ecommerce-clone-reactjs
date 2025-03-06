@@ -5,11 +5,14 @@ import NavbarList from '../components/NavbarList'
 import product1 from '../assets/products2/p1.jpg'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import { useCart } from '../context/CartContext'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const { updateCartCount } = useCart();
+  const navigate = useNavigate()
+
 
   useEffect(() => {
     const fetchCartData = async () => {
@@ -123,7 +126,9 @@ const Cart = () => {
         </div>
         <div className='cartTotal'>
           <h1>Subtotal: <span>Rs. {calculateSubtotal()}</span></h1>
-          <button>Proceed to Buy</button>
+          <button
+          onClick={()=>navigate('/checkout')}
+          >Proceed to Buy</button>
         </div>
       </div>
     </div>
