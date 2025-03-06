@@ -8,7 +8,6 @@ const SearchBar = () => {
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [searchQuery, setSearchQuery] = useState("")
   const [items, setItems] = useState([]);
-
   const navigate = useNavigate()
 
   useEffect(() => {
