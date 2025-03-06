@@ -9,7 +9,7 @@ import { RiDiscountPercentLine } from 'react-icons/ri'
 import { FaArrowsRotate } from 'react-icons/fa6'
 import { CiDeliveryTruck } from 'react-icons/ci'
 import { GoShieldCheck } from 'react-icons/go'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 const ProductPage = () => {
@@ -18,6 +18,30 @@ const ProductPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeImage, setActiveImage] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const navigate = useNavigate()
+
+
+   useEffect(() => {
+      fetch('https://dummyjson.com/products/categories')
+        .then(res => res.json())
+        .then((data) => {
+          setCategories(data);
+        })
+        .catch((err) => console.error('Error fetching categories:', err));
+    }, []);
+  
+    const handleCategoryClick = (category) => {
+      fetch(`https://dummyjson.com/products/category/${category.slug}`)
+        .then((res) => res.json())
+        .then((data) => {
+          navigate(`/searchproducts?query=${category.slug}`, {
+            state: { results: data.products },
+          });
+        })
+        .catch((err) => console.error('Error fetching category products:', err));
+    };
+  
 
   useEffect(() => {
     fetch(`https://dummyjson.com/products/${id}`)
@@ -61,17 +85,10 @@ const ProductPage = () => {
     <div className='fullpage'>
       <Navbar />
       <NavbarList />
-      <div className='productCategories'>
-        <p>Electronics</p>
-        <p>Mobiles & Accessories</p><p>
-          Laptops & Accessories</p><p>
-          TV & Home Entertainment</p><p>
-          Audio</p><p>
-          Cameras</p><p>
-          Computer Peripherals</p><p>
-          Smart Technology</p><p>
-          Musical Instruments</p><p>
-          Office & Stationery</p>
+      <div className='productCategories1'>
+        {categories.map((category, index) => (
+          <p key={index} onClick={() => handleCategoryClick(category)}>{category.name}</p>
+        ))}
       </div>
 
       <div className='productRow'>

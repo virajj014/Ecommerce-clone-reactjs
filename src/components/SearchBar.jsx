@@ -5,10 +5,11 @@ import { IoIosSearch } from "react-icons/io";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 
 const SearchBar = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All")
+  const [selectedCategory, setSelectedCategory] = useState("")
   const [searchQuery, setSearchQuery] = useState("")
   const [items, setItems] = useState([]);
   const navigate = useNavigate()
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     fetch('https://dummyjson.com/products?limit=5&select=title')
@@ -23,18 +24,22 @@ const SearchBar = () => {
       .catch((err) => console.error('Error fetching products:', err));
   }, [])
 
-
-  const categories = [
-    "All",
-    "Alexa Skills",
-    "Amazon Devices",
-    "Amazon Fashion",
-    "Amazon Pharmacy",
-  ]
+  useEffect(() => {
+    fetch('https://dummyjson.com/products/categories')
+      .then(res => res.json())
+      .then((data) => {
+        setCategories(data);
+      })
+      .catch((err) => console.error('Error fetching categories:', err));
+  }, []);
 
   const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value)
-  }
+    setSelectedCategory(event.target.value);
+  };
+
+
+
+
   const debounce = (func, delay) => {
     let timer;
     return (...args) => {
@@ -76,7 +81,14 @@ const SearchBar = () => {
       fetch(`https://dummyjson.com/products/search?q=${searchQuery}`)
         .then(res => res.json())
         .then((data) => {
-          navigate(`/searchproducts?query=${searchQuery}`, { state: { results: data.products } });
+          console.log(data.products);
+          if (selectedCategory.length > 1) {
+            const prod = data.products.filter((product) => product.category === selectedCategory.toLowerCase())
+            navigate(`/searchproducts?query=${searchQuery}`, { state: { results: prod } });
+          }
+          else {
+            navigate(`/searchproducts?query=${searchQuery}`, { state: { results: data.products } });
+          }
         });
     } catch (err) {
       console.error("Error fetching search results:", err);
@@ -97,12 +109,12 @@ const SearchBar = () => {
       })}
     >
       <select
-        value={selectedCategory}
         onChange={handleCategoryChange}
         className='category-dropdown'
       >
+        <option value={""}>All</option>
         {categories.map((category, index) => (
-          <option key={index} value={category}>{category}</option>
+          <option key={index} value={category.name}>{category.name}</option>
         ))}
       </select>
       <ReactSearchAutocomplete

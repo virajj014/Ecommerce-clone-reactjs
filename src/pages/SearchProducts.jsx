@@ -1,47 +1,82 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import NavbarList from '../components/NavbarList'
 import './SearchProducts.css'
 import ProductCard from '../components/ProductCard'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 const SearchProducts = () => {
 
   const location = useLocation();
+  const navigate = useNavigate()
 
   const searchResults = location.state?.results || [];
+
+
+  const [query, setQuery] = useState('');
+  const [sortedProducts, setSortedProducts] = useState(searchResults);
+  const [sortOption, setSortOption] = useState('');
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search); // Get URL query params
+    const queryString = searchParams.get('query'); // Get the "query" parameter
+    setQuery(queryString);
+  }, [location.search]);
+
+
+  useEffect(() => {
+    let sorted = [...searchResults];
+
+    if (sortOption === 'lowToHigh') {
+      sorted.sort((a, b) => a.price - b.price);
+    } else if (sortOption === 'highToLow') {
+      sorted.sort((a, b) => b.price - a.price);
+    }
+
+    setSortedProducts(sorted);
+  }, [sortOption, searchResults]);
+
+
+  useEffect(() => {
+    fetch('https://dummyjson.com/products/categories')
+      .then(res => res.json())
+      .then((data) => {
+        setCategories(data);
+      })
+      .catch((err) => console.error('Error fetching categories:', err));
+  }, []);
+
+  const handleCategoryClick = (category) => {
+    fetch(`https://dummyjson.com/products/category/${category.slug}`)
+      .then((res) => res.json())
+      .then((data) => {
+        navigate(`/searchproducts?query=${category.slug}`, {
+          state: { results: data.products },
+        });
+      })
+      .catch((err) => console.error('Error fetching category products:', err));
+  };
+
+
   return (
     <div className='fullpage'>
       <Navbar />
       <NavbarList />
       <div className='productCategories1'>
-        <p>Electronics</p>
-        <p>Mobiles & Accessories</p><p>
-          Laptops & Accessories</p><p>
-          TV & Home Entertainment</p><p>
-          Audio</p><p>
-          Cameras</p><p>
-          Computer Peripherals</p><p>
-          Smart Technology</p><p>
-          Musical Instruments</p><p>
-          Office & Stationery</p>
+        {categories.map((category, index) => (
+          <p key={index} onClick={() => handleCategoryClick(category)}>{category.name}</p>
+        ))}
       </div>
 
       <div className='productSort'>
-        <p>showing results for "mobile"</p>
+        <p>Showing results for "{query}"</p>
         <div style={{ display: "flex", gap: '10px' }}>
           <p>Sort by:</p>
-          <select>
-            <option>
-              Featured
-            </option>
-            <option>
-              Price: Low to High
-            </option>
-            <option>
-              Price: High to Low
-            </option>
+          <select onChange={(e) => setSortOption(e.target.value)}>
+            <option value="">Featured</option>
+            <option value="lowToHigh">Price: Low to High</option>
+            <option value="highToLow">Price: High to Low</option>
           </select>
-
         </div>
       </div>
 
@@ -90,17 +125,13 @@ const SearchProducts = () => {
           </div>
         </div>
         <div className='right'>
-          {
-            searchResults.length>0 ? (
-              searchResults.map((product)=>(<ProductCard product={product} key={product.id}/>)
-                
-              )
-            )
-            :
-            (
-              <p>No products found</p>
-            )
-          }
+          {sortedProducts.length > 0 ? (
+            sortedProducts.map((product) => (
+              <ProductCard product={product} key={product.id} />
+            ))
+          ) : (
+            <p>No products found</p>
+          )}
 
         </div>
 
