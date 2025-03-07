@@ -5,25 +5,29 @@ import './ProductCard.css'
 import { IoStar } from "react-icons/io5";
 import { IoStarHalf } from "react-icons/io5";
 import { toast } from 'react-toastify';
+import { useCart } from '../context/CartContext';
 
 const ProductCard = ({ product }) => {
     const navigate = useNavigate()
-
+    const { updateCartCount } = useCart();
 
     const addToCart = (productId, quantity = 1) => {
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-        const existingProduct = cart.find(item=> item.id === productId);
+        const existingProduct = cart.find(item => item.id === productId);
 
-        if(existingProduct){
+        if (existingProduct) {
             existingProduct.quantity += quantity;
         }
-        else{
-            cart.push({id: productId , quantity});
+        else {
+            cart.push({ id: productId, quantity });
         }
 
         localStorage.setItem('cart', JSON.stringify(cart));
         toast("Cart updated")
+
+        updateCartCount();
+
     }
     return (
         <div className='card' onClick={() => {
@@ -50,7 +54,7 @@ const ProductCard = ({ product }) => {
                     Or fastest delivery <strong>Wed, 8 Jan</strong>
                 </p>
                 <p className='service'>Service: {product.warrantyInformation || "No warranty"}</p>
-                <button className='add-to-cart' onClick={()=> addToCart(product.id)}>Add to cart</button>
+                <button className='add-to-cart' onClick={() => addToCart(product.id)}>Add to cart</button>
             </div>
         </div>
     )

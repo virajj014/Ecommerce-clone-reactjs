@@ -5,96 +5,99 @@ import { IoIosSearch } from "react-icons/io";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 
 const SearchBar = () => {
-  const [selectedCategory, setSelectedCategory] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("All")
   const [searchQuery, setSearchQuery] = useState("")
   const [items, setItems] = useState([]);
   const navigate = useNavigate()
   const [categories, setCategories] = useState([]);
 
+
   useEffect(() => {
     fetch('https://dummyjson.com/products?limit=5&select=title')
-      .then((res) => res.json())
+      .then(res => res.json())
       .then((data) => {
         const productItems = data.products.map((product, index) => ({
           id: index,
-          name: product.title,
+          name: product.title
         }));
+
         setItems(productItems);
       })
-      .catch((err) => console.error('Error fetching products:', err));
+      .catch((err) => console.error('Error fertching products: ', err));
   }, [])
 
+
   useEffect(() => {
-    fetch('https://dummyjson.com/products/categories')
+    fetch('https://dummyjson.com/products/category-list')
       .then(res => res.json())
       .then((data) => {
         setCategories(data);
       })
-      .catch((err) => console.error('Error fetching categories:', err));
-  }, []);
+      .catch((err) => console.error('Error fetching categories: ', err));
+
+  }, [])
+
+
+
+
 
   const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
-  };
+    setSelectedCategory(event.target.value)
+  }
 
 
 
+  const fetchProducts = (query) => {
+    if (!query.trim()) return;
 
-  const debounce = (func, delay) => {
-    let timer;
-    return (...args) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => func(...args), delay);
-    };
-  };
+    fetch(`https://dummyjson.com/products/search?q=${query}&limit=5&select=title`)
+      .then(res => res.json())
+      .then((data) => {
+        const productItems = data.products.map((product, index) => ({
+          id: index,
+          name: product.title
+        }));
+        console.log(productItems);
+        setItems(productItems);
+      });
 
-  const fetchProducts = useCallback((query) => {
-    if (!query.trim()) return; // If query is empty, return
-    setTimeout(() => {
-      fetch(`https://dummyjson.com/products?limit=5&select=title&q=${query}`)
-        .then((res) => res.json())
-        .then((data) => {
-          const productItems = data.products.map((product, index) => ({
-            id: index,
-            name: product.title,
-          }));
-          setItems(productItems);
-        })
-        .catch((err) => console.error('Error fetching products:', err));
-    }, 500); // 500ms debounce time
-  }, []);
+  }
+
 
   const handleSearchChange = (string, results) => {
-    setSearchQuery(string);
+    console.log(string);
+    setSearchQuery(string)
     fetchProducts(string);
-  };
-
-
-
+  }
 
   const handleSearch = () => {
-    console.log("Category: ", selectedCategory);
-    console.log("Search Query: ", searchQuery);
+    console.log("Category: ", selectedCategory)
+    console.log("Search Quesry: ", searchQuery)
+    // call your backend api
+
 
     if (!searchQuery.trim()) return;
     try {
       fetch(`https://dummyjson.com/products/search?q=${searchQuery}`)
         .then(res => res.json())
         .then((data) => {
-          console.log(data.products);
           if (selectedCategory.length > 1) {
-            const prod = data.products.filter((product) => product.category === selectedCategory.toLowerCase())
+            const prod = data.products.filter((product) => product.category === selectedCategory.toLowerCase());
             navigate(`/searchproducts?query=${searchQuery}`, { state: { results: prod } });
+
           }
           else {
-            navigate(`/searchproducts?query=${searchQuery}`, { state: { results: data.products } });
+            navigate(`/searchproducts?query=${searchQuery}`, { state: { results: data.products } })
+
           }
         });
-    } catch (err) {
-      console.error("Error fetching search results:", err);
     }
-  };
+    catch (err) {
+      console.error("Error fetching search results:", err);
 
+    }
+    // navigate('/searchproducts')
+  }
 
   const handleSelect = (item) => {
     setSearchQuery(item.name);
@@ -102,19 +105,19 @@ const SearchBar = () => {
   return (
     <div className='search-bar'
       onKeyDown={((event) => {
-        console.log("enter")
-        if (event.key === 'Enter') {
+        if (event.key == "Enter") {
           handleSearch();
         }
       })}
     >
       <select
+        value={selectedCategory}
         onChange={handleCategoryChange}
         className='category-dropdown'
       >
         <option value={""}>All</option>
         {categories.map((category, index) => (
-          <option key={index} value={category.name}>{category.name}</option>
+          <option key={index} value={category}>{category}</option>
         ))}
       </select>
       <ReactSearchAutocomplete

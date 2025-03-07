@@ -9,42 +9,31 @@ import { RiDiscountPercentLine } from 'react-icons/ri'
 import { FaArrowsRotate } from 'react-icons/fa6'
 import { CiDeliveryTruck } from 'react-icons/ci'
 import { GoShieldCheck } from 'react-icons/go'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 
 const ProductPage = () => {
-  const { updateCartCount } = useCart();
-
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeImage, setActiveImage] = useState(null);
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
-  const navigate = useNavigate()
+  const { updateCartCount } = useCart();
 
 
    useEffect(() => {
-      fetch('https://dummyjson.com/products/categories')
+      fetch('https://dummyjson.com/products/category-list')
         .then(res => res.json())
         .then((data) => {
           setCategories(data);
         })
-        .catch((err) => console.error('Error fetching categories:', err));
-    }, []);
+        .catch((err) => console.error('Error fetching categories: ', err));
   
-    const handleCategoryClick = (category) => {
-      fetch(`https://dummyjson.com/products/category/${category.slug}`)
-        .then((res) => res.json())
-        .then((data) => {
-          navigate(`/searchproducts?query=${category.slug}`, {
-            state: { results: data.products },
-          });
-        })
-        .catch((err) => console.error('Error fetching category products:', err));
-    };
-  
+    }, [])
 
   useEffect(() => {
     fetch(`https://dummyjson.com/products/${id}`)
@@ -76,11 +65,19 @@ const ProductPage = () => {
 
     localStorage.setItem('cart', JSON.stringify(cart));
     toast("Cart updated")
-
-
     updateCartCount();
   }
+  const handleCategoryClick = (category) => {
+    fetch(`https://dummyjson.com/products/category/${category}`)
+      .then(res => res.json())
+      .then(
+        (data)=>{
+          navigate(`/searchproducts?query=${category}`, { state: { results: data.products } })
+        }
+      )
+      .catch((err) => console.error('Error fetching categories: ', err));
 
+  }
 
 
   if (loading) return <div className='loading'>Loading product details...</div>
@@ -91,10 +88,13 @@ const ProductPage = () => {
     <div className='fullpage'>
       <Navbar />
       <NavbarList />
-      <div className='productCategories1'>
-        {categories.map((category, index) => (
-          <p key={index} onClick={() => handleCategoryClick(category)}>{category.name}</p>
-        ))}
+      <div className='productCategories'>
+      {
+          categories.map((category, index) => (
+            <p key={index} onClick={() => handleCategoryClick(category)}>{category}</p>
+          ))
+        }
+      
       </div>
 
       <div className='productRow'>
