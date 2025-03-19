@@ -81,7 +81,7 @@ const SearchBar = () => {
       fetch(`https://dummyjson.com/products/search?q=${searchQuery}`)
         .then(res => res.json())
         .then((data) => {
-          if (selectedCategory.length > 1) {
+          if (selectedCategory.length > 1 &&  selectedCategory.toLocaleLowerCase() != 'all'){
             const prod = data.products.filter((product) => product.category === selectedCategory.toLowerCase());
             navigate(`/searchproducts?query=${searchQuery}`, { state: { results: prod } });
 
